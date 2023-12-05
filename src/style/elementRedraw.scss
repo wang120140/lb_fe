@@ -1,0 +1,104 @@
+::v-deep(.el-pagination__jump) {
+    color: #000000;
+}
+
+::v-deep(.el-pagination .btn-next) {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+::v-deep(.el-pagination .btn-prev) {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+// ::v-deep(.oodTableCell td.el-table__cell) {
+//     // background: #08090c;
+//     background: #97abe887;
+// }
+
+// ::v-deep(.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell) {
+//     // background: #08090c;
+//     background: #47526887;
+// }
+
+// ::v-deep(.el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell) {
+//     background-color: #3c3f8275;
+// }
+
+::v-deep(.el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell) {
+    background-color: #72a1ca75;
+}
+
+/*滚动条样式*/
+::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 5px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 5px;
+    background-color: skyblue;
+    background-image: -webkit-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent);
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+    background: #f5f7fa;
+    border-radius: 1px;
+}
+
+/*滚动条样式*/
+::v-deep(.el-table ::-webkit-scrollbar) {
+    /*滚动条整体样式*/
+    width: 5px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+::v-deep(.el-table ::-webkit-scrollbar-thumb) {
+    /*滚动条里面小方块*/
+    border-radius: 5px;
+    background-color: skyblue;
+    background-image: -webkit-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent);
+}
+
+::v-deep(.el-table ::-webkit-scrollbar-track) {
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+    background: #f5f7fa;
+    border-radius: 1px;
+}
+
+::v-deep(.el-table .selectRow) {
+    background: rgb(19 59 222) !important;
+    color: #c2c5cb;
+}
+
+::v-deep(.el-input__inner) {
+    border-radius: 20px;
+}
+
+::v-deep(.el-table__row.warning-row) {
+    background-color: rgba(226, 223, 223, 0.702);
+  }
+
+::v-deep(.el-button--mini){
+    font-size:16px;
+}

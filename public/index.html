@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<head>
+    <meta base="/bq/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" maximum-scale=1.0, user-scalable=0 content="width=device-width,initial-scale=1.0">
+
+    <script src="./config.js"></script>
+ 
+   
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+   
+
+
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .row-hight::after,
+        .row-blue::after,
+        .row-highBlue::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            border-bottom: 1px dashed #69c0ff;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* 默认样式 */
+
+        .row-blue {
+            background-color: transparent;
+            color: #eee;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 选中高亮 */
+
+        .row-highBlue {
+            background: linear-gradient(to right, #5433FF88, #20BDFF88, #A5FECB88);
+            color: #eee;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 高亮 */
+
+        .high_light {
+            /* background-image: radial-gradient( transparent, transparent, #61d2f7); */
+            background: linear-gradient(to right, #5433FF88, #20BDFF88);
+            position: relative;
+            z-index: 2;
+            color: #eefd6a;
+        }
+
+        /* th样式 */
+
+        .head_row {
+            background-color: #092046;
+            color: #00fbfe;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vxe-table--body-wrapper {
+            background-color: #03073f;
+        }
+
+        .mytable-scrollbar {
+            position: relative;
+        }
+
+        .mytable-scrollbar ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        /*滚动条的轨道*/
+        /* .mytable-scrollbar::after {
+            content: '';
+            height: calc(100% - 47px);
+            width: 3px;
+            background-color: #0b2d64;
+            position: absolute;
+            right: 9px;
+            top: 47px;
+            z-index: 1;
+        } */
+
+        .mytable-scrollbar ::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        /*滚动条里面的小方块，能向上向下移动*/
+
+        .mytable-scrollbar ::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            border-radius: 5px;
+            border: 1px solid transparent;
+        }
+
+        .mytable-scrollbar ::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+
+        .vxe-table .vxe-table--header-wrapper .vxe-table--header-border-line {
+            border-bottom: 1px solid #030852;
+        }
+
+        .vxe-header--gutter {
+            border-right: 1px #183a65 solid;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* .vxe-header--gutter::after {
+            content: '';
+            width: 2px;
+            height: 200%;
+            background-color: #183a65;
+            position: absolute;
+            right: -3px;
+            top: 0;
+        } */
+
+        .vxe-table--render-default.border--none .vxe-table--header-wrapper {
+            background-color: transparent;
+        }
+
+        .col-yellow {
+            background: linear-gradient(to right, #5433FF88, #20BDFF88);
+            color: #eefd6a;
+        }
+        .vdr.active:before {
+          display: none;
+        }
+        .cesium-viewer-bottom {
+            display: none;
+        }
+        .imagehdbw {
+            width: 100%;
+        }
+    </style>
+    <script>
+        // const worker = new Worker('realtimeIdentify.js')
+    </script>
+</head>
+
+<body>
+
+    <noscript>
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+            Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+</body>
