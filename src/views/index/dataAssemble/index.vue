@@ -7,7 +7,8 @@
           clearable></el-input>
         <el-input v-model="filters.zhang_hao" class="filterItem" style="width: 202px" placeholder="工号"
           clearable></el-input>
-        <el-input v-model="filters.wei_xin" class="filterItem" style="width: 202px" placeholder="微信"
+        <el-input v-model="filters.wei_xin" class="filterItem" style="width: 202px" placeholder="微信" clearable></el-input>
+        <el-input v-model="filters.gong_zhong" class="filterItem" style="width: 202px" placeholder="工种"
           clearable></el-input>
         <el-select v-model="filters.is_my" class="filterItem" placeholder="出处来源" clearable>
         </el-select>
@@ -34,6 +35,10 @@
       <el-table-column prop="mi_ma" label="密码">
 
       </el-table-column>
+      <el-table-column prop="gong_zhong" label="工种">
+
+      </el-table-column>
+
       <el-table-column prop="fen_shu" label="分数">
       </el-table-column>
       <el-table-column prop="mi_is_right" label="密码是否正确">
@@ -52,7 +57,8 @@
     </el-table>
     <div class="pagination">
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4"
-        :page-sizes="[10, 20, 30, 40]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+        :page-sizes="[10, 20, 30, 40]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper"
+        :total="total">
       </el-pagination>
     </div>
   </div>
@@ -73,16 +79,26 @@ export default {
         zhang_hao: "",
         wei_xin: "",
         is_my: "",
+        gong_zhong: ""
 
       },
       tableData: [
 
       ],
-      currentPage4:1,
-      pageSize:10,
-      total:100
+      currentPage4: 1,
+      pageSize: 10,
+      total: 100
     };
   },
+  watch:{
+    filters:{
+      deep:true,
+      handler(){
+        this.getMessageList()
+      }
+    }
+  },
+
   mounted() {
     this.getMessageList()
   },
@@ -97,7 +113,7 @@ export default {
         name: 'dataAssembleDesc'
       })
     },
-    refresh(){
+    refresh() {
       Object.keys(this.filters).forEach((item) => {
         this.filters[item] = ''
       })
@@ -107,10 +123,11 @@ export default {
       let _post = {
         pageSize: this.pageSize,
         pageNum: this.currentPage4,
-        xing_ming:this.filters.xing_ming,
-        zhang_hao:this.filters.zhang_hao,
-        wei_xin:this.filters.wei_xin,
-        is_my:this.filters.is_my
+        xing_ming: this.filters.xing_ming,
+        zhang_hao: this.filters.zhang_hao,
+        wei_xin: this.filters.wei_xin,
+        is_my: this.filters.is_my,
+        gong_zhong: this.filters.gong_zhong
       }
       let _this = this
       getMessageList_fromServer(_post).then((res) => {
@@ -118,18 +135,18 @@ export default {
         _this.total = res.num
       })
     },
-    handleSizeChange(pram){
+    handleSizeChange(pram) {
       this.pageSize = pram
       this.getMessageList()
     },
-    handleCurrentChange(pram){
+    handleCurrentChange(pram) {
       console.log(pram)
       this.currentPage4 = pram
       console.log(".....")
       this.getMessageList()
     }
   }
-  
+
 };
 </script>
 
