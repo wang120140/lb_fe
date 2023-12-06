@@ -3,15 +3,18 @@
     <div class="topBar">
       <button class="addBtn" @click="toCreate">添加信息</button>
       <div class="filter">
-        <el-input v-model="filters.filterName" class="filterItem" style="width: 202px" placeholder="名称"
+        <el-input v-model="filters.xing_ming" class="filterItem" style="width: 202px" placeholder="名称"
           clearable></el-input>
-        <el-input v-model="filters.filterName" class="filterItem" style="width: 202px" placeholder="工号"
+        <el-input v-model="filters.zhang_hao" class="filterItem" style="width: 202px" placeholder="工号"
           clearable></el-input>
-        <el-input v-model="filters.filterName" class="filterItem" style="width: 202px" placeholder="微信"
+        <el-input v-model="filters.wei_xin" class="filterItem" style="width: 202px" placeholder="微信"
           clearable></el-input>
-        <el-select v-model="filters.markSource" class="filterItem" placeholder="出处来源" clearable>
+        <el-select v-model="filters.is_my" class="filterItem" placeholder="出处来源" clearable>
         </el-select>
-        <div class="refresh">
+        <div class="refresh" @click="getMessageList">
+          <i class="el-icon-search"></i>
+        </div>
+        <div class="refresh" @click="refresh">
           <i class="el-icon-refresh"></i>
         </div>
       </div>
@@ -66,11 +69,11 @@ export default {
   data() {
     return {
       filters: {
-        filterName: "",
-        markModel: "",
-        markStatus: "",
-        markSource: "",
-        dataSource: "",
+        xing_ming: "",
+        zhang_hao: "",
+        wei_xin: "",
+        is_my: "",
+
       },
       tableData: [
 
@@ -94,10 +97,20 @@ export default {
         name: 'dataAssembleDesc'
       })
     },
+    refresh(){
+      Object.keys(this.filters).forEach((item) => {
+        this.filters[item] = ''
+      })
+      this.getMessageList()
+    },
     getMessageList() {
       let _post = {
         pageSize: this.pageSize,
-        pageNum: this.currentPage4
+        pageNum: this.currentPage4,
+        xing_ming:this.filters.xing_ming,
+        zhang_hao:this.filters.zhang_hao,
+        wei_xin:this.filters.wei_xin,
+        is_my:this.filters.is_my
       }
       let _this = this
       getMessageList_fromServer(_post).then((res) => {
