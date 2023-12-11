@@ -5,7 +5,7 @@
       <div class="filter">
         <el-input v-model="filters.xing_ming" class="filterItem" style="width: 202px" placeholder="名称"
           clearable></el-input>
-        <el-input v-model="filters.zhang_hao" class="filterItem" style="width: 202px" placeholder="工号"
+        <el-input v-model="filters.gong_hao" class="filterItem" style="width: 202px" placeholder="工号"
           clearable></el-input>
         <el-input v-model="filters.wei_xin" class="filterItem" style="width: 202px" placeholder="微信" clearable></el-input>
         <el-input v-model="filters.gong_zhong" class="filterItem" style="width: 202px" placeholder="工种"
@@ -27,18 +27,14 @@
           <el-link type="primary" @click="toDesc">{{ scope.row.xing_ming }}</el-link>
         </template>
       </el-table-column>
-      <el-table-column prop="zhang_hao" label="工号">
+      <el-table-column prop="gong_hao" label="工号">
+      </el-table-column>
+      <el-table-column prop="mi_ma" label="密码">
       </el-table-column>
       <el-table-column prop="wei_xin" label="微信">
       </el-table-column>
-
-      <el-table-column prop="mi_ma" label="密码">
-
-      </el-table-column>
       <el-table-column prop="gong_zhong" label="工种">
-
       </el-table-column>
-
       <el-table-column prop="fen_shu" label="分数">
       </el-table-column>
       <el-table-column prop="mi_is_right" label="密码是否正确">
@@ -76,7 +72,7 @@ export default {
     return {
       filters: {
         xing_ming: "",
-        zhang_hao: "",
+        gong_hao: "",
         wei_xin: "",
         is_my: "",
         gong_zhong: ""
@@ -124,7 +120,7 @@ export default {
         pageSize: this.pageSize,
         pageNum: this.currentPage4,
         xing_ming: this.filters.xing_ming,
-        zhang_hao: this.filters.zhang_hao,
+        gong_hao: this.filters.gong_hao,
         wei_xin: this.filters.wei_xin,
         is_my: this.filters.is_my,
         gong_zhong: this.filters.gong_zhong

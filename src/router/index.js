@@ -124,9 +124,9 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
     if (to.name == 'deductionHk') {
-        document.title = '海岛保卫战'
+        document.title = '陕钢练兵'
     } else {
-        document.title = '运维系统'
+        document.title = 'sg管理系统'
     }
 
     next()

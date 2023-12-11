@@ -15,3 +15,11 @@ export function getMessageList_fromServer(formData) {
         data:formData
     })
 }
+// 获取列表信息
+export function updataOrAdd_fromServer(formData) {
+    return  request({
+        url: `/updataOrAdd`,
+        method: 'post',
+        data:formData
+    })
+}
