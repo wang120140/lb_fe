@@ -44,32 +44,55 @@
 </template>
 
 <script>
-import {getUUID} from "@/utils/common.js"
-import {updataOrAdd_fromServer} from "@/network/api_lb.js"
+import { getUUID } from "@/utils/common.js"
+import { updataOrAdd_fromServer } from "@/network/api_lb.js"
 export default {
   data() {
     return {
-      formLabelAlign:{
-        xing_ming:"测试",
-        gong_hao:"测试"+getUUID(),
-        mi_ma:" ",
-        wei_xin:" ",
-        gong_zhong:" ",
-        fen_shu:" ",
-        mi_is_right:" ",
-        is_year:" ",
-        is_my:" ",
+      formLabelAlign: {
+        xing_ming: "测试",
+        gong_hao: "测试" + getUUID(),
+        mi_ma: " ",
+        wei_xin: " ",
+        gong_zhong: " ",
+        fen_shu: " ",
+        mi_is_right: " ",
+        is_year: " ",
+        is_my: " ",
       }
     };
   },
+  beforeMount(){
+    
+  },
+  mounted(){
+    console.log(this.$route)
+    if(Object.keys(this.$route.params).length>1 ){
+      this.formLabelAlign = this.$route.params
+    }
+  },
   methods: {
     callback() {
-       console.log(this.formLabelAlign)
-       console.log("测试信息-----")
-       updataOrAdd_fromServer(this.formLabelAlign).then((res) => {
+      console.log(this.formLabelAlign)
+      console.log("测试信息-----")
+      let _this = this
+      updataOrAdd_fromServer(this.formLabelAlign).then((res) => {
         console.log(res)
+        if (res.code == 200) {
+          _this.$notify({
+            title: '成功',
+            message: '数据成功更新完成',
+            type: 'success'
+          });
+        } else {
+          _this.$notify.error({
+            title: '错误',
+            message: '数据更新失败'
+          });
+        }
 
-       })
+
+      })
     }
   }
 };
@@ -129,6 +152,7 @@ export default {
   text-align: center;
   line-height: 53px;
 }
+
 .el-form-item {
   width: 400px;
 }

@@ -24,7 +24,7 @@
     <el-table :data="tableData" style="width: 100%;margin-bottom:30px">
       <el-table-column prop="xing_ming" label="姓名">
         <template slot-scope="scope">
-          <el-link type="primary" @click="toDesc">{{ scope.row.xing_ming }}</el-link>
+          <el-link type="primary" @click="toCreate(scope.row)">{{ scope.row.xing_ming }}</el-link>
         </template>
       </el-table-column>
       <el-table-column prop="gong_hao" label="工号">
@@ -45,10 +45,11 @@
 
       </el-table-column>
       <el-table-column label="操作">
-        <el-link type="primary" style="margin-right:10px">预览</el-link>
-        <el-link type="primary" style="margin-right:10px">修改</el-link>
-        <el-link type="primary" style="margin-right:10px">导出</el-link>
-        <el-link type="primary">删除</el-link>
+        <template slot-scope="scope">
+          <el-link type="primary" style="margin-right:10px" @click="toCreate(scope.row)">修改</el-link>
+          <el-link type="primary">删除</el-link>
+        </template>
+
       </el-table-column>
     </el-table>
     <div class="pagination">
@@ -86,12 +87,16 @@ export default {
       total: 100
     };
   },
-  watch:{
-    filters:{
-      deep:true,
-      handler(){
+  watch: {
+    filters: {
+      deep: true,
+      handler() {
         this.getMessageList()
       }
+    },
+    $route(to, from) {
+      console.log(to.path);
+      this.getMessageList()
     }
   },
 
@@ -99,9 +104,11 @@ export default {
     this.getMessageList()
   },
   methods: {
-    toCreate() {
+    toCreate(pram = null) {
+      console.log(pram)
       this.$router.push({
-        name: 'dataAssembleAdd'
+        name: 'dataAssembleAdd',
+        params: pram
       })
     },
     toDesc() {
