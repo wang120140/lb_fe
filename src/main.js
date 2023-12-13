@@ -30,7 +30,7 @@ Vue.use(Antd);
 // }
 rejectElement(Vue)
 
-Vue.prototype.$client = openMessage()
+// Vue.prototype.$client = openMessage()
 
 
 

@@ -63,14 +63,12 @@ export default {
     };
   },
   beforeMount(){
-    
-  },
-  mounted(){
     console.log(this.$route)
     if(Object.keys(this.$route.params).length>1 ){
       this.formLabelAlign = this.$route.params
     }
   },
+  mounted(){},
   methods: {
     callback() {
       console.log(this.formLabelAlign)

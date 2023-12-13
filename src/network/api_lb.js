@@ -15,10 +15,20 @@ export function getMessageList_fromServer(formData) {
         data:formData
     })
 }
-// 获取列表信息
+// 更新列表信息
 export function updataOrAdd_fromServer(formData) {
     return  request({
         url: `/updataOrAdd`,
+        method: 'post',
+        data:formData
+    })
+}
+
+
+// 删除列表信息
+export function deletItem_fromServer(formData) {
+    return  request({
+        url: `/deletItem`,
         method: 'post',
         data:formData
     })

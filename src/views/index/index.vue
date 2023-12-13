@@ -15,9 +15,7 @@
     <div class="bottom">
 
       <div class="content" v-if="allActive[0]">
-        <!-- <KeepAlive>
-            <router-view />
-          </KeepAlive> -->
+        
         <div class="left">
           <div class="menuT t">
             <el-menu default-active="2-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
@@ -77,9 +75,9 @@
         </div>
 
         <div class="rigthContent">
-          <KeepAlive>
+         
             <router-view />
-          </KeepAlive>
+          
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="indexBox">
     <div class="topBar">
-      <button class="addBtn" @click="toCreate">添加信息</button>
+      <button class="addBtn" @click="toCreate({})">添加信息</button>
       <div class="filter">
         <el-input v-model="filters.xing_ming" class="filterItem" style="width: 202px" placeholder="名称"
           clearable></el-input>
@@ -47,7 +47,17 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-link type="primary" style="margin-right:10px" @click="toCreate(scope.row)">修改</el-link>
-          <el-link type="primary">删除</el-link>
+          <el-link type="primary" >
+            <el-popover placement="top" width="160" v-model="scope.row.visible">
+              <p>这是一段内容这是一段内容确定删除吗？</p>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text" @click="scope.row.visible = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="deleteItem(scope.row,scope.$index)">确定</el-button>
+              </div>
+              <span slot="reference"  @click.stop.capture.prevent="scope.row.visible = true">删除</span>
+            </el-popover>
+
+          </el-link>
         </template>
 
       </el-table-column>
@@ -64,13 +74,14 @@
 <script>
 import pagination from '@/components/pagination/pagination'
 
-import { getMessageList_fromServer } from '@/network/api_lb.js'
+import { getMessageList_fromServer,deletItem_fromServer } from '@/network/api_lb.js'
 export default {
   components: {
     pagination
   },
   data() {
     return {
+      visible: false,
       filters: {
         xing_ming: "",
         gong_hao: "",
@@ -95,7 +106,6 @@ export default {
       }
     },
     $route(to, from) {
-      console.log(to.path);
       this.getMessageList()
     }
   },
@@ -104,8 +114,15 @@ export default {
     this.getMessageList()
   },
   methods: {
-    toCreate(pram = null) {
-      console.log(pram)
+    deleteItem(pram,index){
+      let _this = this;
+      _this.tableData[index].visible = false
+      deletItem_fromServer(pram).then((res) => {
+        console.log(res)
+        _this.getMessageList()
+      })
+    },
+    toCreate(pram = {}) {
       this.$router.push({
         name: 'dataAssembleAdd',
         params: pram
@@ -134,7 +151,10 @@ export default {
       }
       let _this = this
       getMessageList_fromServer(_post).then((res) => {
-        _this.tableData = res.arr
+        _this.tableData = res.arr.map((item) => {
+          item.visible = false
+          return item
+        })
         _this.total = res.num
       })
     },

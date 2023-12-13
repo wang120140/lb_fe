@@ -17,9 +17,9 @@
     <div class="bottom">
 
       <div class="content" v-if="!allActive[0]">
-        <KeepAlive>
+      
           <router-view />
-        </KeepAlive>
+      
 
       </div>
 
