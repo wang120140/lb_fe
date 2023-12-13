@@ -10,6 +10,8 @@
         <el-input v-model="filters.wei_xin" class="filterItem" style="width: 202px" placeholder="微信" clearable></el-input>
         <el-input v-model="filters.gong_zhong" class="filterItem" style="width: 202px" placeholder="工种"
           clearable></el-input>
+        <el-input v-model="filters.fen_shu" class="filterItem" style="width: 202px" placeholder="分数"
+          clearable></el-input>
         <el-select v-model="filters.is_my" class="filterItem" placeholder="出处来源" clearable>
         </el-select>
         <div class="refresh" @click="getMessageList">
@@ -47,14 +49,14 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-link type="primary" style="margin-right:10px" @click="toCreate(scope.row)">修改</el-link>
-          <el-link type="primary" >
+          <el-link type="primary">
             <el-popover placement="top" width="160" v-model="scope.row.visible">
               <p>这是一段内容这是一段内容确定删除吗？</p>
               <div style="text-align: right; margin: 0">
                 <el-button size="mini" type="text" @click="scope.row.visible = false">取消</el-button>
-                <el-button type="primary" size="mini" @click="deleteItem(scope.row,scope.$index)">确定</el-button>
+                <el-button type="primary" size="mini" @click="deleteItem(scope.row, scope.$index)">确定</el-button>
               </div>
-              <span slot="reference"  @click.stop.capture.prevent="scope.row.visible = true">删除</span>
+              <span slot="reference" @click.stop.capture.prevent="scope.row.visible = true">删除</span>
             </el-popover>
 
           </el-link>
@@ -74,7 +76,7 @@
 <script>
 import pagination from '@/components/pagination/pagination'
 
-import { getMessageList_fromServer,deletItem_fromServer } from '@/network/api_lb.js'
+import { getMessageList_fromServer, deletItem_fromServer } from '@/network/api_lb.js'
 export default {
   components: {
     pagination
@@ -87,7 +89,8 @@ export default {
         gong_hao: "",
         wei_xin: "",
         is_my: "",
-        gong_zhong: ""
+        gong_zhong: "",
+        fen_shu:"",
 
       },
       tableData: [
@@ -114,7 +117,7 @@ export default {
     this.getMessageList()
   },
   methods: {
-    deleteItem(pram,index){
+    deleteItem(pram, index) {
       let _this = this;
       _this.tableData[index].visible = false
       deletItem_fromServer(pram).then((res) => {
@@ -147,7 +150,8 @@ export default {
         gong_hao: this.filters.gong_hao,
         wei_xin: this.filters.wei_xin,
         is_my: this.filters.is_my,
-        gong_zhong: this.filters.gong_zhong
+        gong_zhong: this.filters.gong_zhong,
+        fen_shu:this.filters.fen_shu
       }
       let _this = this
       getMessageList_fromServer(_post).then((res) => {
